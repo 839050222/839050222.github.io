@@ -342,64 +342,6 @@
 
 
   
-    <article id="post-Zombies" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2024/11/23/Zombies/" class="article-date">
-  	<time datetime="2024-11-23T09:37:33.000Z" itemprop="datePublished">2024-11-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/11/23/Zombies/">
-        Zombies
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="植物大战僵尸修改太阳"><a href="#植物大战僵尸修改太阳" class="headerlink" title="植物大战僵尸修改太阳"></a><strong>植物大战僵尸修改太阳</strong></h1><p>[toc]<br><strong>目录：</strong><br> 1.找到太阳值<br> 2.找基址<br> 3.编写程序<br> 需材料：<br> 1.Cheat Engine<br> 2.植物大战僵尸<br> 3.编译器<br>操作步骤：</p>
-<h2 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h2><p>1.在CE里加载植物大战僵尸<br><img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%871.png" alt="图片1"><br>2.由于可以知道太阳的精准数值，就可以直接搜索精确数值<br><img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%872.png" alt="图片2"><br>3.搜索后出现了很多数据，这是无法进行筛选的，我们可以种一棵植物，让太阳数量发生变化再跟进搜索；<br>我种了一棵食人花，继续搜索<br><img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%873.png" alt="图片3"><br>这时候出现了唯一的一个数据，如果没有出现，多重复操作跟进几次就可以得到<br>4.双击这个数值，使其加入到下面的列表中，<br><img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%874.png" alt="图片4"><br>可以来确认一下，这个是不是太阳的值，下面的数值，对其进行修改，我将数值修改为500，<br><img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%875.png" alt="图片5"><br> 经过验证，我们找到的就是阳光值的所在地点<br> 其实到这里，小伙伴们已经发现了，可以直接通过这个方法来改变太阳的值来爽一爽了，但是程序在每次重启后，地址值都会发生变化，所以我们需要找到这个值的根源所在，这样我们才能更简单快捷的修改太阳的值。<br> 接下来的内容就是找“根源”，也就是太阳的基址</p>
-<h2 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h2><p>5.在地址上右键—&gt;找出是什么改写了这个地址<br> <img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%876.png" alt="图片6"><br> 然后进入游戏，进行操作，修改太阳的数量，CE窗口中就会出现，是哪条指令修改了这个地址<br><img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%877.png" alt="图片7"><br> 这里可以看到是使用ADD来修改内存，给【eax+5560】加上了ecx的值，【既<strong>偏移</strong>为5560】单击这条指令，查看详细信息<br><img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%878.png" alt="图片8"><br>既然给eax+5560上加，我们就要知道具体的地址，这里CE已经指出了想要查看的指针数值，同时在下面各个寄存器的详细信息中也可以找到EAX的值<br>6.这时候，我们使用CE来搜索这个指针数值，在搜索面板勾选十六进制（或HEX）<br><img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%879.png" alt="图片9"><br>使用手动添加地址，选择值不变化的地址，添加偏移，查看是否是我们需要的地址，我在这里尝试后，选择了0237a0a8这个地址<br><img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%8710.png" alt="图片10"><br>7.添加偏移后，发现指向的值就是我们的太阳数，单击确定，在新添加的这条指令上，右键—&gt;找出是什么访问了这个地址</p>
-<p><img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%8711.png" alt="图片11"><br><img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%8712.png" alt="图片12"><br> 可以发现有一堆访问的指令，但是这些地址都很相似，偏移都是768<br><img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%8713.png" alt="图片13"><br> 随便找一条指令，查看详细信息，<br><img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%8714.png" alt="图片14"><br> 和第一次一样，使用16进制，搜索地址，找到绿色的地址，绿色的地址就是基址，我们可以使用已知的两个偏移对其进行验证，我们选择第一个绿色的地址，手动添加，按照顺序，添加偏移，可以发现最终指向了我们第一次找到的地址和值<br><img src="//839050222.github.io/2018/11/13/Zombies/%E5%9B%BE%E7%89%8715.png" alt="图片15"><br> 至此我们已经发现了太阳值所在的基址和两个偏移量，这时候我们就可以利用已知的信息来编写一个算不是辅助的辅助，来获得太阳。</p>
-<h2 id="第三部分"><a href="#第三部分" class="headerlink" title="第三部分"></a>第三部分</h2>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
     <article id="post-一点点笔记" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -451,7 +393,7 @@
 <p>  <strong>栈帧结构</strong><br>PUSH EBP<br>MOV EBP,ESP</p>
 <p>········</p>
 <p>MOV ESP,EBP<br>POP EBP<br>RETN</p>
-<p>还学习了<a target="_blank" rel="noopener" href="https://839050222.github.io/2018/11/13/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A/">数调用约定</a></p>
+<p>还学习了[数调用约定]</p>
 <p>再往后就开始了 PE 的学习<br> <strong>PE文件格式</strong><br>PE文件是windows OS 下使用的可执行文件格式。一个.exe文件运行时 如何加载到内存、从何处运行、运行中需要的DLL又哪些、需要多大的栈&#x2F;堆内存等大量信息，都以结构体形式存储在PE头中。<br> <strong>基本结构</strong><br>1.从DOS头到节区头是PE头部分。文件中使用偏移（offset），内存中使用VA (Virtual Address）来表示位置，文件加载到内存时节区大小、位置等都会发生变化。文件的内容一般可分为代码（.text）、数据（.data）、资源（.rsrc） 节，分别保存。</p>
 <p>2.各节区头定义了各节区在文件或内存中的大小、位置、属性等。文件&#x2F;内存中节区的起始位置应该在各文件&#x2F;内存最小单位的倍数位置上，空白区域用NULL填充。<br>3.VA指进程虚拟内存的绝对地址，RVA指从基准位置开始的相对地址,PE头内部信息大多以RVA 形式存在<br>RVA+ImageBase=VA</p>
 <p>DOS头<br>IMAGE_DOS_HEADER结构体的大小为64字节，其中重要的两个成员为：  </p>
@@ -485,6 +427,64 @@
 <p>RVA&amp;RAW<br>PE文件加载到内存时，每个节区都要能准确的完成内存地址与文件偏移间的映射。这种映射称为RVA to RAW<br>方法：<br>(1) 查找RVA 所在的节区<br>(2) 使用下面公式计算文件偏移（RAW）<br>RAW=RVA-VirtualAddress+PointerToRawData</p>
 <p>如何用Hex Editor 识别出DOS 存根、IMAGE_FILE_HEADER等部分？<br>答：根据PE规范，IMAGE_DOS_HEADER的大小为64字节，DOS存根区域为40~PE签名区域。紧接PE签名后的是IMAGE_FILE_HEADER，且结构体大小已知。所以说，只要了解各个结构体，便可以用Hex Editor 识别出各个成员</p>
 
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-Zombies" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/11/23/Zombies/" class="article-date">
+  	<time datetime="2024-11-23T09:37:33.000Z" itemprop="datePublished">2024-11-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/11/23/Zombies/">
+        Zombies
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="植物大战僵尸修改太阳"><a href="#植物大战僵尸修改太阳" class="headerlink" title="植物大战僵尸修改太阳"></a><strong>植物大战僵尸修改太阳</strong></h1><p>[toc]<br><strong>目录：</strong><br> 1.找到太阳值<br> 2.找基址<br> 3.编写程序<br> 需材料：<br> 1.Cheat Engine<br> 2.植物大战僵尸<br> 3.编译器<br>操作步骤：</p>
+<h2 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h2><p>1.在CE里加载植物大战僵尸<br><img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%871.png" alt="图片1"><br>2.由于可以知道太阳的精准数值，就可以直接搜索精确数值<br><img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%872.png" alt="图片2"><br>3.搜索后出现了很多数据，这是无法进行筛选的，我们可以种一棵植物，让太阳数量发生变化再跟进搜索；<br>我种了一棵食人花，继续搜索<br><img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%873.png" alt="图片3"><br>这时候出现了唯一的一个数据，如果没有出现，多重复操作跟进几次就可以得到<br>4.双击这个数值，使其加入到下面的列表中，<br><img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%874.png" alt="图片4"><br>可以来确认一下，这个是不是太阳的值，下面的数值，对其进行修改，我将数值修改为500，<br><img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%875.png" alt="图片5"><br> 经过验证，我们找到的就是阳光值的所在地点<br> 其实到这里，小伙伴们已经发现了，可以直接通过这个方法来改变太阳的值来爽一爽了，但是程序在每次重启后，地址值都会发生变化，所以我们需要找到这个值的根源所在，这样我们才能更简单快捷的修改太阳的值。<br> 接下来的内容就是找“根源”，也就是太阳的基址</p>
+<h2 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h2><p>5.在地址上右键—&gt;找出是什么改写了这个地址<br> <img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%876.png" alt="图片6"><br> 然后进入游戏，进行操作，修改太阳的数量，CE窗口中就会出现，是哪条指令修改了这个地址<br><img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%877.png" alt="图片7"><br> 这里可以看到是使用ADD来修改内存，给【eax+5560】加上了ecx的值，【既<strong>偏移</strong>为5560】单击这条指令，查看详细信息<br><img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%878.png" alt="图片8"><br>既然给eax+5560上加，我们就要知道具体的地址，这里CE已经指出了想要查看的指针数值，同时在下面各个寄存器的详细信息中也可以找到EAX的值<br>6.这时候，我们使用CE来搜索这个指针数值，在搜索面板勾选十六进制（或HEX）<br><img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%879.png" alt="图片9"><br>使用手动添加地址，选择值不变化的地址，添加偏移，查看是否是我们需要的地址，我在这里尝试后，选择了0237a0a8这个地址<br><img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%8710.png" alt="图片10"><br>7.添加偏移后，发现指向的值就是我们的太阳数，单击确定，在新添加的这条指令上，右键—&gt;找出是什么访问了这个地址</p>
+<p><img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%8711.png" alt="图片11"><br><img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%8712.png" alt="图片12"><br> 可以发现有一堆访问的指令，但是这些地址都很相似，偏移都是768<br><img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%8713.png" alt="图片13"><br> 随便找一条指令，查看详细信息，<br><img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%8714.png" alt="图片14"><br> 和第一次一样，使用16进制，搜索地址，找到绿色的地址，绿色的地址就是基址，我们可以使用已知的两个偏移对其进行验证，我们选择第一个绿色的地址，手动添加，按照顺序，添加偏移，可以发现最终指向了我们第一次找到的地址和值<br><img src="/2024/11/23/Zombies/%E5%9B%BE%E7%89%8715.png" alt="图片15"><br> 至此我们已经发现了太阳值所在的基址和两个偏移量，这时候我们就可以利用已知的信息来编写一个算不是辅助的辅助，来获得太阳。</p>
+<h2 id="第三部分"><a href="#第三部分" class="headerlink" title="第三部分"></a>第三部分</h2>
       
     </div>
     
@@ -671,63 +671,6 @@
 
 
   
-    <article id="post-siptest" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2024/11/23/siptest/" class="article-date">
-  	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/11/23/siptest/">
-        siptest
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>FTPS测试工具<br>lftp</p>
-<p>SIP测试工具<br>1.sipp</p>
-<p>RTSP   ffplay、VLC</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
     <article id="post-Windows下的异常处理" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -861,6 +804,120 @@
 </thead>
 </table>
 <p>ExceptionCode定义了异常产生的原因，可以自己定义属于自己的ExceptionCode，自定义代码可以在上文所说的RaiseException中使用<br> 陷阱帧精确描述了异常时线程的状态，次结构与处理器高度相关，因此在不同的平台有不同的定义，该结构一般仅供内核自身或者调试系统使用</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-siptest" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/11/23/siptest/" class="article-date">
+  	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/11/23/siptest/">
+        siptest
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>FTPS测试工具<br>lftp</p>
+<p>SIP测试工具<br>1.sipp</p>
+<p>RTSP   ffplay、VLC</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-upx" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/11/23/upx/" class="article-date">
+  	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/11/23/upx/">
+        UPX 脱壳
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="upx"><a href="#upx" class="headerlink" title="upx"></a>upx</h1><p>这篇文章是关于UPX壳的几种脱壳方法。</p>
+<p>首先使用PEID查看一下示例文件，显示有UPX壳<br><img src="/2024/11/23/upx/1.png" alt="图片1"><br>接下来就开始脱壳<br>方法1：<br>使用OD 载入示例程序，此时加载的入口如图<br><img src="/2024/11/23/upx/2.png" alt="图片2"><br>可以发现 有一个pushad 入栈的指令 单步执行一次，查看ESP改变<br><img src="/2024/11/23/upx/3.png" alt="图片3"><br>在ESP点击右键，数据窗口跟随,选择一个双字的内存，右键–&gt;在这几个字节上下一个硬件访问断点，字节，字，双字均可，<br><img src="/2024/11/23/upx/4.png" alt="图片4"><br>随后直接F9运行，有访问这个内存的地方都会停下来。<br>当遇到一个较大跨度的跳转时，基本上就是程序的真正入口了，可以多尝试几次。逆向调试本来就是一个反复摸索的过程。<br>示例程序在几次F9后 停在了一个<strong>CALL 00401000</strong>，经过验证这就是程序的真正入口点，<br><img src="/2024/11/23/upx/5.png" alt="图片5"><br>使用OD脱壳，在<strong>CALL 00401000</strong> 上，右键–&gt;&gt;<br><img src="/2024/11/23/upx/6.png" alt="图片6"><br><img src="/2024/11/23/upx/7.png" alt="图片7"><br>保存名字为 示例文件1 ，使用PEID 再次查看，已显示无壳<br><img src="/2024/11/23/upx/8.png" alt="图片8"></p>
+<p>方法2：<br>刚才我们已经知道程序刚开始有一个pushad 这个pushad是用来把当前的寄存器状态保存在栈中的，以便以解密完程序的原代码后还原正确的寄存器状态，从正确的入口处正常运行。<br>所以说既然有入栈 ，为了堆栈平衡 肯定有出栈 popad 。<br>我们可以在程序刚开始便使用CTRL+F 搜索语句 <strong>popad</strong><br><img src="/2024/11/23/upx/9.png" alt="图片9"><br>下断点，直接F9运行到这里<br><img src="/2024/11/23/upx/10.png" alt="图片10"><br>接下来就是单步执行，遇到一个大距离跳转，应该就是跳到程序入口了。<br>示例程序 popad完后 有一个大距离跳转 <strong>JMP 00401280</strong> ,在这里单步执行跳转后，会发现一个<strong>CALL 00401000</strong> 程序入口找到，使用OD脱壳<br><img src="/2024/11/23/upx/11.png" alt="图片11"><br><img src="/2024/11/23/upx/12.png" alt="图片12"></p>
 
       
     </div>
@@ -1086,66 +1143,6 @@
 </thead>
 </table>
 <p>在此跳转中<br>位移量 = 00401000H - 00402398H -5H =FFFFEC63H<br>在内存中为“63 EC FF FF”<br>所以机器码 = E9 63 EC FF FF</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-upx" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2024/11/23/upx/" class="article-date">
-  	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/11/23/upx/">
-        UPX 脱壳
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="upx"><a href="#upx" class="headerlink" title="upx"></a>upx</h1><p>这篇文章是关于UPX壳的几种脱壳方法。</p>
-<p>首先使用PEID查看一下示例文件，显示有UPX壳<br><img src="//839050222.github.io/2019/08/02/upx/1.png" alt="图片1"><br>接下来就开始脱壳<br>方法1：<br>使用OD 载入示例程序，此时加载的入口如图<br><img src="//839050222.github.io/2019/08/02/upx/2.png" alt="图片2"><br>可以发现 有一个pushad 入栈的指令 单步执行一次，查看ESP改变<br><img src="//839050222.github.io/2019/08/02/upx/3.png" alt="图片3"><br>在ESP点击右键，数据窗口跟随,选择一个双字的内存，右键–&gt;在这几个字节上下一个硬件访问断点，字节，字，双字均可，<br><img src="//839050222.github.io/2019/08/02/upx/4.png" alt="图片4"><br>随后直接F9运行，有访问这个内存的地方都会停下来。<br>当遇到一个较大跨度的跳转时，基本上就是程序的真正入口了，可以多尝试几次。逆向调试本来就是一个反复摸索的过程。<br>示例程序在几次F9后 停在了一个<strong>CALL 00401000</strong>，经过验证这就是程序的真正入口点，<br><img src="//839050222.github.io/2019/08/02/upx/5.png" alt="图片5"><br>使用OD脱壳，在<strong>CALL 00401000</strong> 上，右键–&gt;&gt;<br><img src="//839050222.github.io/2019/08/02/upx/6.png" alt="图片6"><br><img src="//839050222.github.io/2019/08/02/upx/7.png" alt="图片7"><br>保存名字为 示例文件1 ，使用PEID 再次查看，已显示无壳<br><img src="//839050222.github.io/2019/08/02/upx/8.png" alt="图片8"></p>
-<p>方法2：<br>刚才我们已经知道程序刚开始有一个pushad 这个pushad是用来把当前的寄存器状态保存在栈中的，以便以解密完程序的原代码后还原正确的寄存器状态，从正确的入口处正常运行。<br>所以说既然有入栈 ，为了堆栈平衡 肯定有出栈 popad 。<br>我们可以在程序刚开始便使用CTRL+F 搜索语句 <strong>popad</strong><br><img src="//839050222.github.io/2019/08/02/upx/9.png" alt="图片9"><br>下断点，直接F9运行到这里<br><img src="//839050222.github.io/2019/08/02/upx/10.png" alt="图片10"><br>接下来就是单步执行，遇到一个大距离跳转，应该就是跳到程序入口了。<br>示例程序 popad完后 有一个大距离跳转 <strong>JMP 00401280</strong> ,在这里单步执行跳转后，会发现一个<strong>CALL 00401000</strong> 程序入口找到，使用OD脱壳<br><img src="//839050222.github.io/2019/08/02/upx/11.png" alt="图片11"><br><img src="//839050222.github.io/2019/08/02/upx/12.png" alt="图片12"></p>
-<p><a href="/2019/04/29/%E8%BD%AC%E7%A7%BB%E6%8C%87%E4%BB%A4%E6%9C%BA%E5%99%A8%E7%A0%81%E8%AE%A1%E7%AE%97/">转移指令机器码计算<br><strong>&gt;</strong></a></p>
-<p> © 2019 Noob</p>
-<p><a target="_blank" rel="noopener" href="http://hexo.io/">Hexo</a> Theme <a target="_blank" rel="noopener" href="https://github.com/smackgg/hexo-theme-smackdown">Smackdown</a></p>
 
       
     </div>
