@@ -169,60 +169,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-upx" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2024/11/23/upx/" class="article-date">
-  	<time datetime="2024-11-23T09:38:23.000Z" itemprop="datePublished">2024-11-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/11/23/upx/">
-        upx
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
     <article id="post-Hexo+Git搭建博客" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -634,154 +580,6 @@
 
 
   
-    <article id="post-TEB" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2024/11/23/TEB/" class="article-date">
-  	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/11/23/TEB/">
-        siptest
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="TEB"><a href="#TEB" class="headerlink" title="TEB"></a>TEB</h1><p>TEB </p>
-<p><strong>TEB</strong><br>TEB指线程环境块，该结构体包含进程中运行线程的各种信息，进程中的每个线程都对应一个TEB结构体。不同的OS中TEB结构体形态略微不同<br>TEB重要成员<br>在用户模式调试中有两个成员起着重要的作用</p>
-<table>
-<thead>
-<tr>
-<th><code>1234</code></th>
-<th><code>TEB重要成员+0x000    NtTib			: _NT_TIB· · · · +0x030	  ProcessEnvironmentBlock  :   Ptr32  _PEB</code></th>
-</tr>
-</thead>
-</table>
-<p>ProcessEnvironmentBlock<br>ProcessEnvironmentBlock是指向PEB结构体的指针（Process Environment Block，PEB 进程环境块，每个进程对应一个PEB结构体）<br>NtTib<br>TEB结构体的第一个成员为_NT_TIB结构体（TIB Thread Information Block 线程信息块）  </p>
-<table>
-<thead>
-<tr>
-<th><code>123456789101112131415</code></th>
-<th><code>_NT_TIB结构体typedef struct _NT_TIB&#123;	struct _EXCEPTION_REGISTRATION_RECORD *ExceptionLIst;	PVOID  StackBase;	PVOID  StackLimit;	PVOID  SubSystemTib;	union&#123;		PVOID FiberData;		DWORD Version;		&#125;;	PVOID  ArbitraryUserPointer;	struct _NT_TIB *Self;&#125;NT_TIB;typedef NT_TIB *PNT_TIB;</code></th>
-</tr>
-</thead>
-</table>
-<p>第一个成员ExceptionLIst 指向_EXCEPTION_REGISTRATION_RECORD结构体组成的链表，用于Windows OS的SEH<br>SEH(“Structured Exception Handling”),即结构化异常处理·是(windows)操作系统提供给程序设计者的强有力的处理程序错误或异常的武器。<br>来自百度百科<br>最后一个Self成员是_NT_TIB结构体的自引用指针，也是TEB结构体的指针（因为TEB结构体的第一个成员就是 _NT_TIB结构体）<br>TEB访问方法<br>使用OS提供的API来访问TEB<br>Ntdll.NtCurrentTeb()<br>Ntdll.NtCurrentTeb()API用于返回当前线程的TEB结构体的地址。<br>TEB结构体的地址，与FS段寄存器所指的段内存的基地址是一样的。也就是说TEB结构体与FS段寄存器有着某种联系<br>FS段寄存器用来指示当前线程的TEB结构体，但是并非直接指向TEB结构体的地址，它持有SDT索引，该索引持有实际TEB的地址<br>SDT位于内核内存区域，其地址存储在特殊的寄存器GDTR中（GDTR 全局描述符表寄存器 Global Descriptor Table Resiger）</p>
-<p>FS:[0x18]=TEB起始地址<br>FS：[0x18]=TEB.NtTib.Self=address of TIB =address of TEB=FS : 0<br>*FS:0 是段内存的起始地址，FS寄存器指向一个段描述符，<br> 而该描述符又指向段内存的起始地址</p>
-<table>
-<thead>
-<tr>
-<th><code>12</code></th>
-<th><code>FS：[0x30]=PEB起始地址FS:[0x30]=TEB.ProcessEnvironmentBlock=address of PEB</code></th>
-</tr>
-</thead>
-</table>
-<table>
-<thead>
-<tr>
-<th><code>12</code></th>
-<th><code>FS:[0]=SEH起始地址FS:[0]= PEB.NtTib.ExceptionList=address of SEH</code></th>
-</tr>
-</thead>
-</table>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-siptest" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2024/11/23/siptest/" class="article-date">
-  	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/11/23/siptest/">
-        siptest
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>FTPS测试工具<br>lftp</p>
-<p>SIP测试工具<br>1.sipp</p>
-<p>RTSP   ffplay、VLC</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
     <article id="post-Windows下的异常处理" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -915,6 +713,154 @@
 </thead>
 </table>
 <p>ExceptionCode定义了异常产生的原因，可以自己定义属于自己的ExceptionCode，自定义代码可以在上文所说的RaiseException中使用<br> 陷阱帧精确描述了异常时线程的状态，次结构与处理器高度相关，因此在不同的平台有不同的定义，该结构一般仅供内核自身或者调试系统使用</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-TEB" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/11/23/TEB/" class="article-date">
+  	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/11/23/TEB/">
+        siptest
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="TEB"><a href="#TEB" class="headerlink" title="TEB"></a>TEB</h1><p>TEB </p>
+<p><strong>TEB</strong><br>TEB指线程环境块，该结构体包含进程中运行线程的各种信息，进程中的每个线程都对应一个TEB结构体。不同的OS中TEB结构体形态略微不同<br>TEB重要成员<br>在用户模式调试中有两个成员起着重要的作用</p>
+<table>
+<thead>
+<tr>
+<th><code>1234</code></th>
+<th><code>TEB重要成员+0x000    NtTib			: _NT_TIB· · · · +0x030	  ProcessEnvironmentBlock  :   Ptr32  _PEB</code></th>
+</tr>
+</thead>
+</table>
+<p>ProcessEnvironmentBlock<br>ProcessEnvironmentBlock是指向PEB结构体的指针（Process Environment Block，PEB 进程环境块，每个进程对应一个PEB结构体）<br>NtTib<br>TEB结构体的第一个成员为_NT_TIB结构体（TIB Thread Information Block 线程信息块）  </p>
+<table>
+<thead>
+<tr>
+<th><code>123456789101112131415</code></th>
+<th><code>_NT_TIB结构体typedef struct _NT_TIB&#123;	struct _EXCEPTION_REGISTRATION_RECORD *ExceptionLIst;	PVOID  StackBase;	PVOID  StackLimit;	PVOID  SubSystemTib;	union&#123;		PVOID FiberData;		DWORD Version;		&#125;;	PVOID  ArbitraryUserPointer;	struct _NT_TIB *Self;&#125;NT_TIB;typedef NT_TIB *PNT_TIB;</code></th>
+</tr>
+</thead>
+</table>
+<p>第一个成员ExceptionLIst 指向_EXCEPTION_REGISTRATION_RECORD结构体组成的链表，用于Windows OS的SEH<br>SEH(“Structured Exception Handling”),即结构化异常处理·是(windows)操作系统提供给程序设计者的强有力的处理程序错误或异常的武器。<br>来自百度百科<br>最后一个Self成员是_NT_TIB结构体的自引用指针，也是TEB结构体的指针（因为TEB结构体的第一个成员就是 _NT_TIB结构体）<br>TEB访问方法<br>使用OS提供的API来访问TEB<br>Ntdll.NtCurrentTeb()<br>Ntdll.NtCurrentTeb()API用于返回当前线程的TEB结构体的地址。<br>TEB结构体的地址，与FS段寄存器所指的段内存的基地址是一样的。也就是说TEB结构体与FS段寄存器有着某种联系<br>FS段寄存器用来指示当前线程的TEB结构体，但是并非直接指向TEB结构体的地址，它持有SDT索引，该索引持有实际TEB的地址<br>SDT位于内核内存区域，其地址存储在特殊的寄存器GDTR中（GDTR 全局描述符表寄存器 Global Descriptor Table Resiger）</p>
+<p>FS:[0x18]=TEB起始地址<br>FS：[0x18]=TEB.NtTib.Self=address of TIB =address of TEB=FS : 0<br>*FS:0 是段内存的起始地址，FS寄存器指向一个段描述符，<br> 而该描述符又指向段内存的起始地址</p>
+<table>
+<thead>
+<tr>
+<th><code>12</code></th>
+<th><code>FS：[0x30]=PEB起始地址FS:[0x30]=TEB.ProcessEnvironmentBlock=address of PEB</code></th>
+</tr>
+</thead>
+</table>
+<table>
+<thead>
+<tr>
+<th><code>12</code></th>
+<th><code>FS:[0]=SEH起始地址FS:[0]= PEB.NtTib.ExceptionList=address of SEH</code></th>
+</tr>
+</thead>
+</table>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-siptest" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/11/23/siptest/" class="article-date">
+  	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/11/23/siptest/">
+        siptest
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>FTPS测试工具<br>lftp</p>
+<p>SIP测试工具<br>1.sipp</p>
+<p>RTSP   ffplay、VLC</p>
 
       
     </div>
@@ -1140,6 +1086,66 @@
 </thead>
 </table>
 <p>在此跳转中<br>位移量 = 00401000H - 00402398H -5H =FFFFEC63H<br>在内存中为“63 EC FF FF”<br>所以机器码 = E9 63 EC FF FF</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-upx" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/11/23/upx/" class="article-date">
+  	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/11/23/upx/">
+        UPX 脱壳
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="upx"><a href="#upx" class="headerlink" title="upx"></a>upx</h1><p>这篇文章是关于UPX壳的几种脱壳方法。</p>
+<p>首先使用PEID查看一下示例文件，显示有UPX壳<br><img src="//839050222.github.io/2019/08/02/upx/1.png" alt="图片1"><br>接下来就开始脱壳<br>方法1：<br>使用OD 载入示例程序，此时加载的入口如图<br><img src="//839050222.github.io/2019/08/02/upx/2.png" alt="图片2"><br>可以发现 有一个pushad 入栈的指令 单步执行一次，查看ESP改变<br><img src="//839050222.github.io/2019/08/02/upx/3.png" alt="图片3"><br>在ESP点击右键，数据窗口跟随,选择一个双字的内存，右键–&gt;在这几个字节上下一个硬件访问断点，字节，字，双字均可，<br><img src="//839050222.github.io/2019/08/02/upx/4.png" alt="图片4"><br>随后直接F9运行，有访问这个内存的地方都会停下来。<br>当遇到一个较大跨度的跳转时，基本上就是程序的真正入口了，可以多尝试几次。逆向调试本来就是一个反复摸索的过程。<br>示例程序在几次F9后 停在了一个<strong>CALL 00401000</strong>，经过验证这就是程序的真正入口点，<br><img src="//839050222.github.io/2019/08/02/upx/5.png" alt="图片5"><br>使用OD脱壳，在<strong>CALL 00401000</strong> 上，右键–&gt;&gt;<br><img src="//839050222.github.io/2019/08/02/upx/6.png" alt="图片6"><br><img src="//839050222.github.io/2019/08/02/upx/7.png" alt="图片7"><br>保存名字为 示例文件1 ，使用PEID 再次查看，已显示无壳<br><img src="//839050222.github.io/2019/08/02/upx/8.png" alt="图片8"></p>
+<p>方法2：<br>刚才我们已经知道程序刚开始有一个pushad 这个pushad是用来把当前的寄存器状态保存在栈中的，以便以解密完程序的原代码后还原正确的寄存器状态，从正确的入口处正常运行。<br>所以说既然有入栈 ，为了堆栈平衡 肯定有出栈 popad 。<br>我们可以在程序刚开始便使用CTRL+F 搜索语句 <strong>popad</strong><br><img src="//839050222.github.io/2019/08/02/upx/9.png" alt="图片9"><br>下断点，直接F9运行到这里<br><img src="//839050222.github.io/2019/08/02/upx/10.png" alt="图片10"><br>接下来就是单步执行，遇到一个大距离跳转，应该就是跳到程序入口了。<br>示例程序 popad完后 有一个大距离跳转 <strong>JMP 00401280</strong> ,在这里单步执行跳转后，会发现一个<strong>CALL 00401000</strong> 程序入口找到，使用OD脱壳<br><img src="//839050222.github.io/2019/08/02/upx/11.png" alt="图片11"><br><img src="//839050222.github.io/2019/08/02/upx/12.png" alt="图片12"></p>
+<p><a href="/2019/04/29/%E8%BD%AC%E7%A7%BB%E6%8C%87%E4%BB%A4%E6%9C%BA%E5%99%A8%E7%A0%81%E8%AE%A1%E7%AE%97/">转移指令机器码计算<br><strong>&gt;</strong></a></p>
+<p> © 2019 Noob</p>
+<p><a target="_blank" rel="noopener" href="http://hexo.io/">Hexo</a> Theme <a target="_blank" rel="noopener" href="https://github.com/smackgg/hexo-theme-smackdown">Smackdown</a></p>
 
       
     </div>
