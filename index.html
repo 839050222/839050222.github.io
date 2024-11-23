@@ -293,10 +293,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Hexo-Git搭建博客大概流程"><a href="#Hexo-Git搭建博客大概流程" class="headerlink" title="Hexo+Git搭建博客大概流程"></a>Hexo+Git搭建博客大概流程</h1><h2 id="Hexo-Github搭建属于自己的博客"><a href="#Hexo-Github搭建属于自己的博客" class="headerlink" title="Hexo+Github搭建属于自己的博客"></a>Hexo+Github搭建属于自己的博客</h2><p> 在学习中，非常需要一个博客，它不仅可以帮你记录你的劳动成果，最重要的是可以帮你记录你的思想，帮你唤醒当时你在想什么。经过摸索学习，生活中、网络中多个大牛们的帮忙，我也自己搭建了属于自己的博客。刚刚学会，来分享一下，与其他人的教程比较，我的这个教程就显得有些小巫见大巫，有很多不能解决的问题，还请谅解。<br> <strong>大概流程：</strong><br> [TOC]<br> 搭建 Node.js环境<br> 搭建 Git 环境<br> GitHub 注册和配置<br> 安装配置 Hexo<br> 关联 Hexo 与 GitHubPages<br> Hexo 的最简单操作—–建立新的文件并部署</p>
-<h2 id="一、搭建-Node-js-环境"><a href="#一、搭建-Node-js-环境" class="headerlink" title="一、搭建 Node.js 环境"></a>一、搭建 Node.js 环境</h2><p>在 Node.js 官网：<a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a> 下载安装包（随意选啦~~）<br><img src="/.com//Hexo+Git%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%871.png" alt="Alt text"><br>一路Next 就行。 当然也可以自己选择安装路径，然后Next到底<br>然后打开命令提示符，依次输入 node -v、npm -v。若出现版本号说明Node.js环境配置成功<br><img src="/.com//Hexo+Git%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%872.png" alt="Alt text"></p>
-<h2 id="二、搭建Git环境"><a href="#二、搭建Git环境" class="headerlink" title="二、搭建Git环境"></a>二、搭建Git环境</h2><p><strong>注：此环境用于将本地的网页、文章提交到Github上</strong><br>在<a target="_blank" rel="noopener" href="https://git-scm.com/">https://git-scm.com&#x2F;</a> 里下载安装包 版本自己选就行然后安装<br><img src="/.com//Hexo+Git%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%873.png" alt="Alt text"></p>
+<h2 id="一、搭建-Node-js-环境"><a href="#一、搭建-Node-js-环境" class="headerlink" title="一、搭建 Node.js 环境"></a>一、搭建 Node.js 环境</h2><p>在 Node.js 官网：<a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a> 下载安装包（随意选啦~~）<br><img src="/.com//%E5%9B%BE%E7%89%871.png" alt="Alt text"><br>一路Next 就行。 当然也可以自己选择安装路径，然后Next到底<br>然后打开命令提示符，依次输入 node -v、npm -v。若出现版本号说明Node.js环境配置成功<br><img src="/.com//%E5%9B%BE%E7%89%872.png" alt="Alt text"></p>
+<h2 id="二、搭建Git环境"><a href="#二、搭建Git环境" class="headerlink" title="二、搭建Git环境"></a>二、搭建Git环境</h2><p><strong>注：此环境用于将本地的网页、文章提交到Github上</strong><br>在<a target="_blank" rel="noopener" href="https://git-scm.com/">https://git-scm.com&#x2F;</a> 里下载安装包 版本自己选就行然后安装<br><img src="/.com//%E5%9B%BE%E7%89%873.png" alt="Alt text"></p>
 <p>安装完后桌面右键 打开 Git Bash Here，，输入git –version，若出现版本号说明Git环境配置完成</p>
-<h2 id="三、Github-注册和配置"><a href="#三、Github-注册和配置" class="headerlink" title="三、Github 注册和配置"></a>三、Github 注册和配置</h2><p>注册，我就不说啦，自己注册就好，重要的是配置。<br>首先要创建一个仓库：Repository name 一定要使用你的用户名<br>Repository name 一定要使用你的用户名<br>Repository name 一定要使用你的用户名。（重要的事情说三遍）<br><img src="/.com//Hexo+Git%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%874.png" alt="Alt text"></p>
+<h2 id="三、Github-注册和配置"><a href="#三、Github-注册和配置" class="headerlink" title="三、Github 注册和配置"></a>三、Github 注册和配置</h2><p>注册，我就不说啦，自己注册就好，重要的是配置。<br>首先要创建一个仓库：Repository name 一定要使用你的用户名<br>Repository name 一定要使用你的用户名<br>Repository name 一定要使用你的用户名。（重要的事情说三遍）<br><img src="/.com//%E5%9B%BE%E7%89%874.png" alt="Alt text"></p>
 <p>图中的 yourname 改为你自己的用户名 如 用户名为 Beast 后面就是 Beast.github.io<br>创建完成后 访问你的地址，若可以访问证明配置成功。</p>
 <h2 id="四、安装配置Hexo"><a href="#四、安装配置Hexo" class="headerlink" title="四、安装配置Hexo"></a>四、安装配置Hexo</h2><p>这是个什么东西呢？？引用一下：<br>Hexo 是一个快速、简洁且高效的博客框架，使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。想要跟多的了解，请阅读Hexo官方文档 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">https://hexo.io/zh-cn&#x2F;</a></p>
 <p>使用 npm安装 Hexo：<br>首先，再一个你喜欢的路径建立一个文件夹（名字随意但不能是汉字），在文件夹中右键，打开 Git Bash Here<br>然后输入  </p>
@@ -308,7 +308,7 @@
 </tr>
 </thead>
 </table>
-<p>可能会看到一个WARN 但是没有关系，放心用就行了，不会有问题。<br>最后输入 hexo version 查看Hexo的版本<br><img src="/.com//Hexo+Git%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%875.png" alt="Alt text"></p>
+<p>可能会看到一个WARN 但是没有关系，放心用就行了，不会有问题。<br>最后输入 hexo version 查看Hexo的版本<br><img src="/.com//%E5%9B%BE%E7%89%875.png" alt="Alt text"></p>
 <p>这时表明你的 hexo 安装完成。接下来就是输入以下命令来初始化 Hexo<br>hexo init yourname.github.io<br>使用完这个指令后 你会发现文件夹中多了一个yourname的文件夹，执行后续步骤。  </p>
 <table>
 <thead>
@@ -318,7 +318,7 @@
 </tr>
 </thead>
 </table>
-<p>其中的 yourname 改成你自己的用户名<br>完成后文件夹中大概张这样：<br><img src="/.com//Hexo+Git%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%876.png" alt="Alt text"></p>
+<p>其中的 yourname 改成你自己的用户名<br>完成后文件夹中大概张这样：<br><img src="/.com//%E5%9B%BE%E7%89%876.png" alt="Alt text"></p>
 <p>下一步：运行本地Hexo 服务<br>输入 hexo server 或者hexo s<br><strong>注：若hexo serve 不能使用，我们可以输入下面这个指令，安装一下 server</strong>  </p>
 <table>
 <thead>
@@ -341,7 +341,7 @@
 </table>
 <p>此处 “youremail” 填写你用来接受邮件的邮箱，QQ、163啊什么的都可以</p>
 <p>输入上述代码后，下面会弹出，输入密码，这个密码是你在提交项目的时候用的，可有可无，想设置密码就输入密码后回车；不想要密码就直接连续回车就行。</p>
-<h3 id="第二步：添加刚才生成的SSH-keys到你的Github上"><a href="#第二步：添加刚才生成的SSH-keys到你的Github上" class="headerlink" title="第二步：添加刚才生成的SSH keys到你的Github上"></a>第二步：添加刚才生成的SSH keys到你的Github上</h3><p>因为我们刚才第一步设置的盘是C盘 所以你会在你的C盘C:\Users\里找到一个 .ssh的文件夹，打开它，找到一个叫id_rsa.pub的文件 这就是我们刚才生成的密钥，将这个文件用记事本打开，复制里面的所有内容粘贴到 <a target="_blank" rel="noopener" href="https://github.com/settings/ssh">https://github.com/settings/ssh</a> 中的 new SSH key中，保存即可。<br><img src="/.com//Hexo+Git%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%877.png" alt="Alt text"></p>
+<h3 id="第二步：添加刚才生成的SSH-keys到你的Github上"><a href="#第二步：添加刚才生成的SSH-keys到你的Github上" class="headerlink" title="第二步：添加刚才生成的SSH keys到你的Github上"></a>第二步：添加刚才生成的SSH keys到你的Github上</h3><p>因为我们刚才第一步设置的盘是C盘 所以你会在你的C盘C:\Users\里找到一个 .ssh的文件夹，打开它，找到一个叫id_rsa.pub的文件 这就是我们刚才生成的密钥，将这个文件用记事本打开，复制里面的所有内容粘贴到 <a target="_blank" rel="noopener" href="https://github.com/settings/ssh">https://github.com/settings/ssh</a> 中的 new SSH key中，保存即可。<br><img src="/.com//%E5%9B%BE%E7%89%877.png" alt="Alt text"></p>
 <h3 id="第三步：测试是否设置成功"><a href="#第三步：测试是否设置成功" class="headerlink" title="第三步：测试是否设置成功"></a>第三步：测试是否设置成功</h3><p>输入指令  </p>
 <table>
 <thead>
@@ -389,7 +389,7 @@
 </tr>
 </thead>
 </table>
-<p>注：若hexo clean指令错误不能用，请参考图片中的解决方法<br><img src="/.com//Hexo+Git%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%878.png" alt="Alt text"></p>
+<p>注：若hexo clean指令错误不能用，请参考图片中的解决方法<br><img src="/.com//%E5%9B%BE%E7%89%878.png" alt="Alt text"></p>
 <p>完成后 进入 https：&#x2F;&#x2F;yourname.github.io （同样yourname改成你的用户名），你会看到跟第一次进入时不一样了，它与Hexo成功关联了。</p>
 <p>输入指令  </p>
 <table>
