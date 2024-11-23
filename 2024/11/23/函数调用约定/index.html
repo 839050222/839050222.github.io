@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>siptest | Hexo</title>
+  <title>函数调用约定 | Hexo</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="FTPS测试工具lftp SIP测试工具1.sipp RTSP   ffplay、VLC">
+  <meta name="description" content="函数调用约定博客很早都已经搭建成功，最近才新换了个interesting的主题。顺便来写下我的第一篇博客。最近在看《逆向工程核心原理》（李承远【韩】 著） 这本书，学到了一些东西。哈哈本人是个菜鸡，拿这个来做一下笔记吧！~这次篇博客用于记录 “函数调用约定” 函数调用约定 Calling Convention 既“函数调用约定”，他是对函数调用时如何传递参数的一种约定。函数调用约定有一下三种：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="siptest">
-<meta property="og:url" content="http://example.com/2024/11/23/siptest/index.html">
+<meta property="og:title" content="函数调用约定">
+<meta property="og:url" content="http://example.com/2024/11/23/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="FTPS测试工具lftp SIP测试工具1.sipp RTSP   ffplay、VLC">
+<meta property="og:description" content="函数调用约定博客很早都已经搭建成功，最近才新换了个interesting的主题。顺便来写下我的第一篇博客。最近在看《逆向工程核心原理》（李承远【韩】 著） 这本书，学到了一些东西。哈哈本人是个菜鸡，拿这个来做一下笔记吧！~这次篇博客用于记录 “函数调用约定” 函数调用约定 Calling Convention 既“函数调用约定”，他是对函数调用时如何传递参数的一种约定。函数调用约定有一下三种：">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-11-23T09:18:16.000Z">
-<meta property="article:modified_time" content="2024-11-23T09:19:40.240Z">
+<meta property="article:published_time" content="2024-11-23T09:27:17.000Z">
+<meta property="article:modified_time" content="2024-11-23T09:29:45.627Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -171,11 +171,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-siptest" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-函数调用约定" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2024/11/23/siptest/" class="article-date">
-  	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
+      <a href="/2024/11/23/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A/" class="article-date">
+  	<time datetime="2024-11-23T09:27:17.000Z" itemprop="datePublished">2024-11-23</time>
 </a>
     </div>
   
@@ -188,7 +188,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      siptest
+      函数调用约定
       
     </h1>
   
@@ -206,9 +206,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>FTPS测试工具<br>lftp</p>
-<p>SIP测试工具<br>1.sipp</p>
-<p>RTSP   ffplay、VLC</p>
+        <h1 id="函数调用约定"><a href="#函数调用约定" class="headerlink" title="函数调用约定"></a>函数调用约定</h1><p>博客很早都已经搭建成功，最近才新换了个interesting的主题。顺便来写下我的第一篇博客。<br>最近在看《逆向工程核心原理》（李承远【韩】 著） 这本书，学到了一些东西。哈哈本人是个菜鸡，拿这个来做一下笔记吧！~<br>这次篇博客用于记录 “函数调用约定”</p>
+<p><strong>函数调用约定</strong></p>
+<p>Calling Convention 既“函数调用约定”，他是对函数调用时如何传递参数的一种约定。函数调用约定有一下三种：</p>
+<table>
+<thead>
+<tr>
+<th><code>1</code></th>
+<th><code>cdecl、  stdcall、 fastcall</code></th>
+</tr>
+</thead>
+</table>
+<h2 id="cdecl-c语言默认"><a href="#cdecl-c语言默认" class="headerlink" title="cdecl(c语言默认)"></a>cdecl(c语言默认)</h2><p>cdecl是C语言使用的方式，调用者main（）函数直接清理其压入栈内的函数参数，<br>cdecl方式的好处在于，它可以像C语言的printf（）函数一样，<br>向被调用者传递长度可变的参数。这种长度可变的参数在其他调用约定中很难实现。</p>
+<h2 id="stdcall"><a href="#stdcall" class="headerlink" title="stdcall"></a>stdcall</h2><p>stdcall方式常用于Win32 API 该方式由被调用者清理栈。<br>若想在C语言中使用stdcall方式编译源码，只要使用_stdcall关键字即可</p>
+<p>stdcall方式的好处在于，被调用者函数内部存在着栈清理代码，<br>与每次调用函数时都要用ADD ESP,XXX 命令的方式相比，代码尺寸小</p>
+<h2 id="fastcall"><a href="#fastcall" class="headerlink" title="fastcall"></a>fastcall</h2><p>fastcall方式与stdcall方式基本类似，但是该方式通常会使用寄存器（而非栈内存）去传递那些需要传递给函数的部分参数。<br>其优点在于可以实现对函数的快速调用（寄存器在CPU内部），但是有时需要额外的系统开销来管理ECX,EDX寄存器。若调用函数前ECX与EDX中存有重要数据，那么使用前就必须先备份</p>
+<p>函数调用约定就这些了吧~以后有的继续补充。。。</p>
+<p><strong>小伙子加油！路还很长</strong></p>
 
       
     </div>
@@ -218,15 +232,20 @@
     
 <nav id="article-nav">
   
-    <a href="/2024/11/23/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2024/11/23/Hexo+Git%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">&lt;</strong>
       <div class="article-nav-title">
         
-          函数调用约定
+          (no title)
         
       </div>
     </a>
   
+  
+    <a href="/2024/11/23/siptest/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">siptest</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
   
 </nav>
 
@@ -234,7 +253,7 @@
 </article>
 
 
-<div class="ds-share share" data-thread-key="siptest" data-title="siptest" data-url="http://example.com/2024/11/23/siptest/"  data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="siptest">
+<div class="ds-share share" data-thread-key="函数调用约定" data-title="函数调用约定" data-url="http://example.com/2024/11/23/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A/"  data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="函数调用约定">
     <div class="ds-share-inline">
       <ul  class="ds-share-icons-16">
       	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
