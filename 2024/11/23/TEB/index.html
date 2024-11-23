@@ -9,15 +9,15 @@
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="FTPS测试工具lftp SIP测试工具1.sipp RTSP   ffplay、VLC">
+  <meta name="description" content="TEBTEB  TEBTEB指线程环境块，该结构体包含进程中运行线程的各种信息，进程中的每个线程都对应一个TEB结构体。不同的OS中TEB结构体形态略微不同TEB重要成员在用户模式调试中有两个成员起着重要的作用    1234 TEB重要成员+0x000    NtTib			: _NT_TIB· · · · +0x030	  ProcessEnvironmentBlock  :   Ptr32">
 <meta property="og:type" content="article">
 <meta property="og:title" content="siptest">
-<meta property="og:url" content="http://example.com/2024/11/23/siptest/index.html">
+<meta property="og:url" content="http://example.com/2024/11/23/TEB/index.html">
 <meta property="og:site_name" content="Newbie">
-<meta property="og:description" content="FTPS测试工具lftp SIP测试工具1.sipp RTSP   ffplay、VLC">
+<meta property="og:description" content="TEBTEB  TEBTEB指线程环境块，该结构体包含进程中运行线程的各种信息，进程中的每个线程都对应一个TEB结构体。不同的OS中TEB结构体形态略微不同TEB重要成员在用户模式调试中有两个成员起着重要的作用    1234 TEB重要成员+0x000    NtTib			: _NT_TIB· · · · +0x030	  ProcessEnvironmentBlock  :   Ptr32">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-11-23T09:18:16.000Z">
-<meta property="article:modified_time" content="2024-11-23T09:19:40.240Z">
+<meta property="article:modified_time" content="2024-11-23T10:37:39.828Z">
 <meta property="article:author" content="Newbie">
 <meta name="twitter:card" content="summary">
   
@@ -171,10 +171,10 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-siptest" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-TEB" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2024/11/23/siptest/" class="article-date">
+      <a href="/2024/11/23/TEB/" class="article-date">
   	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
 </a>
     </div>
@@ -206,9 +206,43 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>FTPS测试工具<br>lftp</p>
-<p>SIP测试工具<br>1.sipp</p>
-<p>RTSP   ffplay、VLC</p>
+        <h1 id="TEB"><a href="#TEB" class="headerlink" title="TEB"></a>TEB</h1><p>TEB </p>
+<p><strong>TEB</strong><br>TEB指线程环境块，该结构体包含进程中运行线程的各种信息，进程中的每个线程都对应一个TEB结构体。不同的OS中TEB结构体形态略微不同<br>TEB重要成员<br>在用户模式调试中有两个成员起着重要的作用</p>
+<table>
+<thead>
+<tr>
+<th><code>1234</code></th>
+<th><code>TEB重要成员+0x000    NtTib			: _NT_TIB· · · · +0x030	  ProcessEnvironmentBlock  :   Ptr32  _PEB</code></th>
+</tr>
+</thead>
+</table>
+<p>ProcessEnvironmentBlock<br>ProcessEnvironmentBlock是指向PEB结构体的指针（Process Environment Block，PEB 进程环境块，每个进程对应一个PEB结构体）<br>NtTib<br>TEB结构体的第一个成员为_NT_TIB结构体（TIB Thread Information Block 线程信息块）  </p>
+<table>
+<thead>
+<tr>
+<th><code>123456789101112131415</code></th>
+<th><code>_NT_TIB结构体typedef struct _NT_TIB&#123;	struct _EXCEPTION_REGISTRATION_RECORD *ExceptionLIst;	PVOID  StackBase;	PVOID  StackLimit;	PVOID  SubSystemTib;	union&#123;		PVOID FiberData;		DWORD Version;		&#125;;	PVOID  ArbitraryUserPointer;	struct _NT_TIB *Self;&#125;NT_TIB;typedef NT_TIB *PNT_TIB;</code></th>
+</tr>
+</thead>
+</table>
+<p>第一个成员ExceptionLIst 指向_EXCEPTION_REGISTRATION_RECORD结构体组成的链表，用于Windows OS的SEH<br>SEH(“Structured Exception Handling”),即结构化异常处理·是(windows)操作系统提供给程序设计者的强有力的处理程序错误或异常的武器。<br>来自百度百科<br>最后一个Self成员是_NT_TIB结构体的自引用指针，也是TEB结构体的指针（因为TEB结构体的第一个成员就是 _NT_TIB结构体）<br>TEB访问方法<br>使用OS提供的API来访问TEB<br>Ntdll.NtCurrentTeb()<br>Ntdll.NtCurrentTeb()API用于返回当前线程的TEB结构体的地址。<br>TEB结构体的地址，与FS段寄存器所指的段内存的基地址是一样的。也就是说TEB结构体与FS段寄存器有着某种联系<br>FS段寄存器用来指示当前线程的TEB结构体，但是并非直接指向TEB结构体的地址，它持有SDT索引，该索引持有实际TEB的地址<br>SDT位于内核内存区域，其地址存储在特殊的寄存器GDTR中（GDTR 全局描述符表寄存器 Global Descriptor Table Resiger）</p>
+<p>FS:[0x18]=TEB起始地址<br>FS：[0x18]=TEB.NtTib.Self=address of TIB =address of TEB=FS : 0<br>*FS:0 是段内存的起始地址，FS寄存器指向一个段描述符，<br> 而该描述符又指向段内存的起始地址</p>
+<table>
+<thead>
+<tr>
+<th><code>12</code></th>
+<th><code>FS：[0x30]=PEB起始地址FS:[0x30]=TEB.ProcessEnvironmentBlock=address of PEB</code></th>
+</tr>
+</thead>
+</table>
+<table>
+<thead>
+<tr>
+<th><code>12</code></th>
+<th><code>FS:[0]=SEH起始地址FS:[0]= PEB.NtTib.ExceptionList=address of SEH</code></th>
+</tr>
+</thead>
+</table>
 
       
     </div>
@@ -218,17 +252,17 @@
     
 <nav id="article-nav">
   
-    <a href="/2024/11/23/TEB/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2024/11/23/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">&lt;</strong>
       <div class="article-nav-title">
         
-          siptest
+          函数调用约定
         
       </div>
     </a>
   
   
-    <a href="/2024/11/23/Windows%E4%B8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2024/11/23/siptest/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">siptest</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
@@ -239,7 +273,7 @@
 </article>
 
 
-<div class="ds-share share" data-thread-key="siptest" data-title="siptest" data-url="http://example.com/2024/11/23/siptest/"  data-images="/img/head.png" data-content="siptest">
+<div class="ds-share share" data-thread-key="TEB" data-title="siptest" data-url="http://example.com/2024/11/23/TEB/"  data-images="/img/head.png" data-content="siptest">
     <div class="ds-share-inline">
       <ul  class="ds-share-icons-16">
       	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
