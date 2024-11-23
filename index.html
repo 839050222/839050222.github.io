@@ -360,7 +360,7 @@
   
     <h1 itemprop="name">
       <a class="article-title" href="/2024/11/23/Zombies/">
-        Zombies-1
+        Zombies
         
       </a>
     </h1>
@@ -598,7 +598,7 @@
   
     <h1 itemprop="name">
       <a class="article-title" href="/2024/11/23/TEB/">
-        siptest
+        TEB
         
       </a>
     </h1>
@@ -671,6 +671,63 @@
 
 
   
+    <article id="post-siptest" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/11/23/siptest/" class="article-date">
+  	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/11/23/siptest/">
+        siptest
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>FTPS测试工具<br>lftp</p>
+<p>SIP测试工具<br>1.sipp</p>
+<p>RTSP   ffplay、VLC</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-Windows下的异常处理" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -689,7 +746,7 @@
   
     <h1 itemprop="name">
       <a class="article-title" href="/2024/11/23/Windows%E4%B8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
-        siptest
+        Windows下的异常处理
         
       </a>
     </h1>
@@ -804,123 +861,6 @@
 </thead>
 </table>
 <p>ExceptionCode定义了异常产生的原因，可以自己定义属于自己的ExceptionCode，自定义代码可以在上文所说的RaiseException中使用<br> 陷阱帧精确描述了异常时线程的状态，次结构与处理器高度相关，因此在不同的平台有不同的定义，该结构一般仅供内核自身或者调试系统使用</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-siptest" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2024/11/23/siptest/" class="article-date">
-  	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/11/23/siptest/">
-        siptest
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>FTPS测试工具<br>lftp</p>
-<p>SIP测试工具<br>1.sipp</p>
-<p>RTSP   ffplay、VLC</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-upx" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2024/11/23/upx/" class="article-date">
-  	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/11/23/upx/">
-        UPX 脱壳
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="upx"><a href="#upx" class="headerlink" title="upx"></a>upx</h1><p>这篇文章是关于UPX壳的几种脱壳方法。</p>
-<p>首先使用PEID查看一下示例文件，显示有UPX壳<br><img src="//839050222.github.io/2019/08/02/upx/1.png" alt="图片1"><br>接下来就开始脱壳<br>方法1：<br>使用OD 载入示例程序，此时加载的入口如图<br><img src="//839050222.github.io/2019/08/02/upx/2.png" alt="图片2"><br>可以发现 有一个pushad 入栈的指令 单步执行一次，查看ESP改变<br><img src="//839050222.github.io/2019/08/02/upx/3.png" alt="图片3"><br>在ESP点击右键，数据窗口跟随,选择一个双字的内存，右键–&gt;在这几个字节上下一个硬件访问断点，字节，字，双字均可，<br><img src="//839050222.github.io/2019/08/02/upx/4.png" alt="图片4"><br>随后直接F9运行，有访问这个内存的地方都会停下来。<br>当遇到一个较大跨度的跳转时，基本上就是程序的真正入口了，可以多尝试几次。逆向调试本来就是一个反复摸索的过程。<br>示例程序在几次F9后 停在了一个<strong>CALL 00401000</strong>，经过验证这就是程序的真正入口点，<br><img src="//839050222.github.io/2019/08/02/upx/5.png" alt="图片5"><br>使用OD脱壳，在<strong>CALL 00401000</strong> 上，右键–&gt;&gt;<br><img src="//839050222.github.io/2019/08/02/upx/6.png" alt="图片6"><br><img src="//839050222.github.io/2019/08/02/upx/7.png" alt="图片7"><br>保存名字为 示例文件1 ，使用PEID 再次查看，已显示无壳<br><img src="//839050222.github.io/2019/08/02/upx/8.png" alt="图片8"></p>
-<p>方法2：<br>刚才我们已经知道程序刚开始有一个pushad 这个pushad是用来把当前的寄存器状态保存在栈中的，以便以解密完程序的原代码后还原正确的寄存器状态，从正确的入口处正常运行。<br>所以说既然有入栈 ，为了堆栈平衡 肯定有出栈 popad 。<br>我们可以在程序刚开始便使用CTRL+F 搜索语句 <strong>popad</strong><br><img src="//839050222.github.io/2019/08/02/upx/9.png" alt="图片9"><br>下断点，直接F9运行到这里<br><img src="//839050222.github.io/2019/08/02/upx/10.png" alt="图片10"><br>接下来就是单步执行，遇到一个大距离跳转，应该就是跳到程序入口了。<br>示例程序 popad完后 有一个大距离跳转 <strong>JMP 00401280</strong> ,在这里单步执行跳转后，会发现一个<strong>CALL 00401000</strong> 程序入口找到，使用OD脱壳<br><img src="//839050222.github.io/2019/08/02/upx/11.png" alt="图片11"><br><img src="//839050222.github.io/2019/08/02/upx/12.png" alt="图片12"></p>
-<p><a href="/2019/04/29/%E8%BD%AC%E7%A7%BB%E6%8C%87%E4%BB%A4%E6%9C%BA%E5%99%A8%E7%A0%81%E8%AE%A1%E7%AE%97/">转移指令机器码计算<br><strong>&gt;</strong></a></p>
-<p> © 2019 Noob</p>
-<p><a target="_blank" rel="noopener" href="http://hexo.io/">Hexo</a> Theme <a target="_blank" rel="noopener" href="https://github.com/smackgg/hexo-theme-smackdown">Smackdown</a></p>
 
       
     </div>
@@ -1146,6 +1086,66 @@
 </thead>
 </table>
 <p>在此跳转中<br>位移量 = 00401000H - 00402398H -5H =FFFFEC63H<br>在内存中为“63 EC FF FF”<br>所以机器码 = E9 63 EC FF FF</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-upx" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/11/23/upx/" class="article-date">
+  	<time datetime="2024-11-23T09:18:16.000Z" itemprop="datePublished">2024-11-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/11/23/upx/">
+        UPX 脱壳
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="upx"><a href="#upx" class="headerlink" title="upx"></a>upx</h1><p>这篇文章是关于UPX壳的几种脱壳方法。</p>
+<p>首先使用PEID查看一下示例文件，显示有UPX壳<br><img src="//839050222.github.io/2019/08/02/upx/1.png" alt="图片1"><br>接下来就开始脱壳<br>方法1：<br>使用OD 载入示例程序，此时加载的入口如图<br><img src="//839050222.github.io/2019/08/02/upx/2.png" alt="图片2"><br>可以发现 有一个pushad 入栈的指令 单步执行一次，查看ESP改变<br><img src="//839050222.github.io/2019/08/02/upx/3.png" alt="图片3"><br>在ESP点击右键，数据窗口跟随,选择一个双字的内存，右键–&gt;在这几个字节上下一个硬件访问断点，字节，字，双字均可，<br><img src="//839050222.github.io/2019/08/02/upx/4.png" alt="图片4"><br>随后直接F9运行，有访问这个内存的地方都会停下来。<br>当遇到一个较大跨度的跳转时，基本上就是程序的真正入口了，可以多尝试几次。逆向调试本来就是一个反复摸索的过程。<br>示例程序在几次F9后 停在了一个<strong>CALL 00401000</strong>，经过验证这就是程序的真正入口点，<br><img src="//839050222.github.io/2019/08/02/upx/5.png" alt="图片5"><br>使用OD脱壳，在<strong>CALL 00401000</strong> 上，右键–&gt;&gt;<br><img src="//839050222.github.io/2019/08/02/upx/6.png" alt="图片6"><br><img src="//839050222.github.io/2019/08/02/upx/7.png" alt="图片7"><br>保存名字为 示例文件1 ，使用PEID 再次查看，已显示无壳<br><img src="//839050222.github.io/2019/08/02/upx/8.png" alt="图片8"></p>
+<p>方法2：<br>刚才我们已经知道程序刚开始有一个pushad 这个pushad是用来把当前的寄存器状态保存在栈中的，以便以解密完程序的原代码后还原正确的寄存器状态，从正确的入口处正常运行。<br>所以说既然有入栈 ，为了堆栈平衡 肯定有出栈 popad 。<br>我们可以在程序刚开始便使用CTRL+F 搜索语句 <strong>popad</strong><br><img src="//839050222.github.io/2019/08/02/upx/9.png" alt="图片9"><br>下断点，直接F9运行到这里<br><img src="//839050222.github.io/2019/08/02/upx/10.png" alt="图片10"><br>接下来就是单步执行，遇到一个大距离跳转，应该就是跳到程序入口了。<br>示例程序 popad完后 有一个大距离跳转 <strong>JMP 00401280</strong> ,在这里单步执行跳转后，会发现一个<strong>CALL 00401000</strong> 程序入口找到，使用OD脱壳<br><img src="//839050222.github.io/2019/08/02/upx/11.png" alt="图片11"><br><img src="//839050222.github.io/2019/08/02/upx/12.png" alt="图片12"></p>
+<p><a href="/2019/04/29/%E8%BD%AC%E7%A7%BB%E6%8C%87%E4%BB%A4%E6%9C%BA%E5%99%A8%E7%A0%81%E8%AE%A1%E7%AE%97/">转移指令机器码计算<br><strong>&gt;</strong></a></p>
+<p> © 2019 Noob</p>
+<p><a target="_blank" rel="noopener" href="http://hexo.io/">Hexo</a> Theme <a target="_blank" rel="noopener" href="https://github.com/smackgg/hexo-theme-smackdown">Smackdown</a></p>
 
       
     </div>
