@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>TACACS+配置 | Newbie</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="TACACS+ 配置与使用指南1. TACACS+ 简介tac_plus 是一种开源的 TACACS+（Terminal Access Controller Access-Control System Plus）实现，用于网络设备的集中身份验证、授权和审计（AAA，Authentication, Authorization, and Accounting）。TACACS+ 是一种由 Cisco 开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TACACS+配置">
+<meta property="og:url" content="http://example.com/2024/11/26/TACACS+%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Newbie">
+<meta property="og:description" content="TACACS+ 配置与使用指南1. TACACS+ 简介tac_plus 是一种开源的 TACACS+（Terminal Access Controller Access-Control System Plus）实现，用于网络设备的集中身份验证、授权和审计（AAA，Authentication, Authorization, and Accounting）。TACACS+ 是一种由 Cisco 开">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-11-26T13:24:13.000Z">
+<meta property="article:modified_time" content="2024-11-26T13:28:18.988Z">
+<meta property="article:author" content="Newbie">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="Newbie" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/icon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/head.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/head.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-TACACS+配置" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2024/11/26/TACACS+%E9%85%8D%E7%BD%AE/" class="article-date">
+  	<time datetime="2024-11-26T13:24:13.000Z" itemprop="datePublished">2024-11-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TACACS+配置
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="TACACS-配置与使用指南"><a href="#TACACS-配置与使用指南" class="headerlink" title="TACACS+ 配置与使用指南"></a>TACACS+ 配置与使用指南</h1><h2 id="1-TACACS-简介"><a href="#1-TACACS-简介" class="headerlink" title="1. TACACS+ 简介"></a>1. TACACS+ 简介</h2><p><code>tac_plus</code> 是一种开源的 TACACS+（Terminal Access Controller Access-Control System Plus）实现，用于网络设备的集中身份验证、授权和审计（AAA，Authentication, Authorization, and Accounting）。TACACS+ 是一种由 Cisco 开发的协议，主要用于管理网络设备（如路由器、交换机等）的访问控制。</p>
+<h3 id="1-1-核心功能"><a href="#1-1-核心功能" class="headerlink" title="1.1 核心功能"></a>1.1 核心功能</h3><ul>
+<li><strong>身份验证（Authentication）</strong>：验证用户的身份，通常通过用户名和密码完成。</li>
+<li>支持多种验证方式：明文密码、加密密码等。</li>
+<li>集中管理用户身份，减少设备上的本地配置需求。</li>
+<li><strong>授权（Authorization）</strong>：控制用户能够执行哪些操作。</li>
+<li>基于命令级别的权限控制（例如允许 <code>show</code> 命令但拒绝 <code>configure</code> 命令）。</li>
+<li>可以针对特定用户或用户组定义访问策略。</li>
+<li><strong>审计（Accounting）</strong>：记录用户活动日志，包括登录时间、执行的命令等。</li>
+<li>有助于追踪问题和满足合规性需求。</li>
+</ul>
+<h3 id="1-2-优点与局限"><a href="#1-2-优点与局限" class="headerlink" title="1.2 优点与局限"></a>1.2 优点与局限</h3><p><strong>优点</strong>：</p>
+<ul>
+<li>灵活的命令授权。</li>
+<li>高安全性（使用 TCP，数据加密范围更广）。</li>
+<li>简单易用的配置文件。</li>
+</ul>
+<p><strong>局限</strong>：</p>
+<ul>
+<li>仅适用于支持 TACACS+ 的设备。</li>
+<li>相比于 RADIUS 的应用场景较窄（主要面向网络设备管理）。</li>
+</ul>
+<h3 id="1-3-与-RADIUS-比较"><a href="#1-3-与-RADIUS-比较" class="headerlink" title="1.3 与 RADIUS 比较"></a>1.3 与 RADIUS 比较</h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>TACACS+</th>
+<th>RADIUS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议层</td>
+<td>TCP</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>加密范围</td>
+<td>整个数据包</td>
+<td>仅加密密码部分</td>
+</tr>
+<tr>
+<td>应用场景</td>
+<td>网络设备管理</td>
+<td>网络访问控制（如 Wi-Fi）</td>
+</tr>
+<tr>
+<td>支持的功能</td>
+<td>身份验证、授权、审计</td>
+<td>身份验证、审计</td>
+</tr>
+</tbody></table>
+<h3 id="1-4-TACACS-安装"><a href="#1-4-TACACS-安装" class="headerlink" title="1.4 TACACS+ 安装"></a>1.4 TACACS+ 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.pro-bono-publico.de/projects/src/DEVEL.tar.bz2 --no-check-certificate</span><br><span class="line"><span class="comment"># 下载文件后解压</span></span><br><span class="line">bzip2 -dc DEVEL.tar.bz2 | tar xvfp -</span><br><span class="line"><span class="built_in">cd</span> PROJECTS</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line"><span class="built_in">sudo</span> make install</span><br></pre></td></tr></table></figure>
+<h2 id="2-tac-plus-服务配置"><a href="#2-tac-plus-服务配置" class="headerlink" title="2. tac_plus 服务配置"></a>2. tac_plus 服务配置</h2><p>&#x2F;usr&#x2F;local&#x2F;etc&#x2F;mavis&#x2F;sample&#x2F;tac_plus.cfg为示例配置文件 ，拷贝到&#x2F;usr&#x2F;local&#x2F;etc&#x2F;下  tac_plus服务默认使用这个位置的配置文件</p>
+<h3 id="2-1-监听端口配置"><a href="#2-1-监听端口配置" class="headerlink" title="2.1 监听端口配置"></a>2.1 监听端口配置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen = &#123; port = 4949 &#125;  </span><br></pre></td></tr></table></figure>
+<p>可以配置多个，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listen = &#123; port = 4949 &#125;</span><br><span class="line">listen = &#123; port = 5050 &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-用户配置"><a href="#2-2-用户配置" class="headerlink" title="2.2 用户配置"></a>2.2 用户配置</h3><p>下面的配置时添加一个用户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">用户名：server</span><br><span class="line">密码：ABCabc123 （密码前的clear表示以明文存储）</span><br><span class="line">可执行权限：默认可以执行所有命令，不允许执行no 命令</span><br><span class="line">priv-lvl = 15 </span><br></pre></td></tr></table></figure>
+<p>如果APV配置了admin aaa authorize on 时，只有priv-lvl &#x3D; 15的用户可以进入config 模式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">user = server &#123;</span><br><span class="line">        password = clear ABCabc123</span><br><span class="line">        service = shell &#123;</span><br><span class="line">                set priv-lvl = 15  #</span><br><span class="line">                cmd = exit &#123; permit .* &#125;</span><br><span class="line">                cmd = show &#123; permit .* &#125;</span><br><span class="line">                cmd = enable &#123; permit .*&#125;</span><br><span class="line">                cmd = config &#123; permit .* &#125;</span><br><span class="line">                cmd = no &#123; deny .* &#125;</span><br><span class="line"></span><br><span class="line">                default cmd = permit</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以给配置一个用户组，创建用户时指定用户组，就会默认继承组的权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">group = guest &#123;</span><br><span class="line">        default service = permit</span><br><span class="line">        enable = deny</span><br><span class="line">        service = shell &#123;</span><br><span class="line">                default command = permit</span><br><span class="line">                default attribute = permit</span><br><span class="line">                set priv-lvl = 1</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">user = readonly &#123;</span><br><span class="line">        password = clear readonly</span><br><span class="line">        member = guest</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-日志-安全配置"><a href="#2-3-日志-安全配置" class="headerlink" title="2.3 日志&amp;安全配置"></a>2.3 日志&amp;安全配置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">id = tac_plus &#123;</span><br><span class="line">        debug = PACKET AUTHEN AUTHOR</span><br><span class="line"></span><br><span class="line">        access log = /tmp/access.log        </span><br><span class="line">        #认证日志，可以自定义</span><br><span class="line">        authorization log = /tmp/author.log        </span><br><span class="line">        #授权日志，可以自定义</span><br><span class="line">        accounting log = /tmp/acct.log        </span><br><span class="line">        #审计日志，可以自定义</span><br><span class="line"></span><br><span class="line">        host = world &#123;</span><br><span class="line">                address = ::/0                    </span><br><span class="line">                #允许所有客户端IP连接</span><br><span class="line">                prompt = &quot;Welcome\n&quot;            </span><br><span class="line">                #用户登录时提示语</span><br><span class="line">                enable 15 = clear secret            </span><br><span class="line">                #进入特权模式的密码，APV用不上这个</span><br><span class="line">                key = cisco                    </span><br><span class="line">                #共享密钥为cisco对应APV配置admin aaa server 的[secret]参数</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4完整配置文件示例"><a href="#2-4完整配置文件示例" class="headerlink" title="2.4完整配置文件示例"></a>2.4完整配置文件示例</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">test@server1:~$ cat /usr/local/etc/tac_plus.cfg</span><br><span class="line">#!../../../sbin/tac_plus</span><br><span class="line"></span><br><span class="line">id = spawnd &#123;</span><br><span class="line">        listen = &#123; port = 4949 &#125;</span><br><span class="line">        spawn = &#123;</span><br><span class="line">                instances min = 1</span><br><span class="line">                instances max = 10</span><br><span class="line">        &#125;</span><br><span class="line">        background = no</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">id = tac_plus &#123;</span><br><span class="line">        debug = PACKET AUTHEN AUTHOR</span><br><span class="line"></span><br><span class="line">        access log = /tmp/access.log</span><br><span class="line">        authorization log = /tmp/author.log</span><br><span class="line">        accounting log = /tmp/acct.log</span><br><span class="line"></span><br><span class="line">        host = world &#123;</span><br><span class="line">                address = ::/0</span><br><span class="line">                prompt = &quot;Welcome\n&quot;</span><br><span class="line">                enable 15 = clear secret</span><br><span class="line">                key = cisco</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        group = admin &#123;</span><br><span class="line">                default service = permit</span><br><span class="line">                service = shell &#123;</span><br><span class="line">                        default command = permit</span><br><span class="line">                        default attribute = permit</span><br><span class="line">                        set priv-lvl = 15</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        group = guest &#123;</span><br><span class="line">                default service = permit</span><br><span class="line">                enable = deny</span><br><span class="line">                service = shell &#123;</span><br><span class="line">                        default command = permit</span><br><span class="line">                        default attribute = permit</span><br><span class="line">                        set priv-lvl = 1</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        user = server &#123;</span><br><span class="line">                password = clear ABCabc123</span><br><span class="line">                service = shell &#123;</span><br><span class="line">                        set priv-lvl = 15</span><br><span class="line">                        cmd = exit &#123; permit .* &#125;</span><br><span class="line">                        cmd = show &#123; permit .* &#125;</span><br><span class="line">                        cmd = enable &#123; permit .*&#125;</span><br><span class="line">                        cmd = config &#123; permit .* &#125;</span><br><span class="line">                        cmd = no &#123; deny .* &#125;</span><br><span class="line">                        #cmd = &quot;.*&quot; &#123; permit .*&#125;</span><br><span class="line">                        default cmd = permit</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        user = user888 &#123;</span><br><span class="line">                password = clear ABCabc123</span><br><span class="line">                service = shell &#123;</span><br><span class="line">                        set priv-lvl = 1</span><br><span class="line">                        cmd = exit &#123; permit .* &#125;</span><br><span class="line">                        cmd = show &#123; permit .* &#125;</span><br><span class="line">                        cmd = enable &#123; permit .*&#125;</span><br><span class="line">                        cmd = config &#123; permit .* &#125;</span><br><span class="line">                        cmd = no &#123; deny .* &#125;</span><br><span class="line">                        #cmd = &quot;.*&quot; &#123; permit .*&#125;</span><br><span class="line">                        default cmd = permit</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        user = cisco &#123;</span><br><span class="line">                password = clear cisco</span><br><span class="line">                member = admin</span><br><span class="line">                service = shell &#123;</span><br><span class="line">                        default command = permit</span><br><span class="line">                        default attribute = permit</span><br><span class="line">                        set priv-lvl = 15</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        user = readonly &#123;</span><br><span class="line">                password = clear readonly</span><br><span class="line">                member = guest</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每次修改完需要重启服务才能生效 ，可以使用<code>/usr/local/sbin/tac_plus -P /usr/local/etc/tac_plus.cfg</code>，检查是否有语法错误</p>
+<h2 id="3-APV对应配置及抓包"><a href="#3-APV对应配置及抓包" class="headerlink" title="3. APV对应配置及抓包"></a>3. APV对应配置及抓包</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">admin aaa on</span><br><span class="line">admin aaa authorize on</span><br><span class="line">admin aaa method TAC_X</span><br><span class="line">admin aaa server es01 &quot;192.168.101.193&quot; 4949 &quot;*****&quot;</span><br></pre></td></tr></table></figure>
+<p>使用客户端登录APV，登录过程抓包，由于是整包加密的所以需要先试用共享密钥解密</p>
+<figure class="highlight plaintext"><figcaption><span>-> 输入共享密钥和端口```，我的服务使用了4949端口、密钥 cisco</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![解包配置](TACACS+/tac1.png)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">登录、执行cli过程的 认证、审计、授权日志内容</span><br></pre></td></tr></table></figure>
+<p>test@server1:~$ tail -n 10 &#x2F;tmp&#x2F;access.log<br>2024-11-21 19:05:11 +0800       192.168.101.197 array           192::6:75       shell login failed<br>2024-11-21 19:10:49 +0800       192.168.101.209 array           192::6:75       shell login failed<br>2024-11-21 19:16:41 +0800       192.168.101.209 test            192::6:75       shell login failed<br>2024-11-21 19:27:34 +0800       192.168.101.209 array           192::6:75       shell login failed<br>2024-11-21 19:27:56 +0800       192.168.101.209 array           192::6:75       shell login failed<br>2024-11-21 19:28:53 +0800       192.168.101.197 array           192::6:75       shell login failed<br>2024-11-21 19:37:38 +0800       192.168.101.209 s1              192::6:75       shell login failed<br>2024-11-21 19:37:51 +0800       192.168.101.209 user1           192::6:75       shell login failed<br>2024-11-22 15:53:06 +0800       192.168.101.197 array           192::6:75       shell login failed<br>2024-11-26 14:47:38 +0800       192.168.101.207 array                   shell login failed</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第三列记录真实客户端IP、 例如使用192::6:75 ssh登录APV192.168.101.197，需要APV发送给tac_plus的认证、审计、授权包中带有remote_address字段才会记录</span><br><span class="line">![remote_address](TACACS+/tac2.png)</span><br><span class="line"></span><br><span class="line">审计日志，记录用户执行的所有操作</span><br></pre></td></tr></table></figure>
+<p>test@server1:~$ tail -n 10 &#x2F;tmp&#x2F;acct.log<br>2024-11-13 17:56:35 +0800       192.168.101.26  array           192.168.101.77  start   task_id&#x3D;&#x2F;var&#x2F;crash&#x2F;array_20241113_175646   timezone&#x3D;0      service&#x3D;shell   cmd&#x3D;no slb group method “group_2024_11_13_17:56:14”<br>2024-11-13 17:56:35 +0800       192.168.101.26  array           192.168.101.77  stop    task_id&#x3D;&#x2F;var&#x2F;crash&#x2F;array_20241113_175646   timezone&#x3D;0      service&#x3D;shell   cmd&#x3D;no slb group method “group_2024_11_13_17:56:14”<br>2024-11-13 17:56:35 +0800       192.168.101.26  array           192.168.101.77  start   task_id&#x3D;&#x2F;var&#x2F;crash&#x2F;array_20241113_175646   timezone&#x3D;0      service&#x3D;shell   cmd&#x3D;show slb group method<br>2024-11-13 17:56:35 +0800       192.168.101.26  array           192.168.101.77  stop    task_id&#x3D;&#x2F;var&#x2F;crash&#x2F;array_20241113_175646   timezone&#x3D;0      service&#x3D;shell   cmd&#x3D;show slb group method<br>2024-11-13 17:56:36 +0800       192.168.101.26  array           192.168.101.77  start   task_id&#x3D;&#x2F;var&#x2F;crash&#x2F;array_20241113_175647   timezone&#x3D;0      service&#x3D;shell   cmd&#x3D;show slb policy all<br>2024-11-13 17:56:36 +0800       192.168.101.26  array           192.168.101.77  stop    task_id&#x3D;&#x2F;var&#x2F;crash&#x2F;array_20241113_175647   timezone&#x3D;0      service&#x3D;shell   cmd&#x3D;show slb policy all<br>2024-11-13 17:59:08 +0800       192.168.101.26  user888         192.168.101.191 start   task_id&#x3D;&#x2F;var&#x2F;crash&#x2F;user888_20241113_175920 timezone&#x3D;0      service&#x3D;shell   cmd&#x3D;en<br>2024-11-13 17:59:09 +0800       192.168.101.26  user888         192.168.101.191 stop    task_id&#x3D;&#x2F;var&#x2F;crash&#x2F;user888_20241113_175920 timezone&#x3D;0      service&#x3D;shell   cmd&#x3D;en<br>2024-11-13 17:59:09 +0800       192.168.101.26  user888         192.168.101.191 start   task_id&#x3D;&#x2F;var&#x2F;crash&#x2F;user888_20241113_175921 timezone&#x3D;0      service&#x3D;shell   cmd&#x3D;c t<br>2024-11-13 17:59:09 +0800       192.168.101.26  user888         192.168.101.191 stop    task_id&#x3D;&#x2F;var&#x2F;crash&#x2F;user888_20241113_175921 timezone&#x3D;0      service&#x3D;shell   cmd&#x3D;c t</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">授权日志，当APV发送授权请求到tac_plus后 根据对应用户的配置做是否可执行的授权，</span><br></pre></td></tr></table></figure>
+<p>2024-07-24 19:30:50 +0800       192.168.101.42  server          192.168.101.191 deny    en<br>2024-07-24 19:30:52 +0800       192.168.101.42  server          192.168.101.191 permit  enable<br>2024-07-24 19:30:58 +0800       192.168.101.42  server          192.168.101.191 permit  config  terminal<br>2024-07-24 19:31:04 +0800       192.168.101.42  server          192.168.101.191 permit  show    date<br>2024-07-24 19:31:09 +0800       192.168.101.42  server          192.168.101.191 deny    slb     real tcp “aaa” 1.1.1.1<br>2024-07-24 19:31:13 +0800       192.168.101.42  server          192.168.101.191 deny    clear   slb all<br>2024-07-24 19:31:15 +0800       192.168.101.42  server          192.168.101.191 permit  exit<br>2024-07-24 19:31:17 +0800       192.168.101.42  server          192.168.101.191 permit  exit</p>
+<pre><code>![授权](TACACS+/tac4.png)
+更多参考内容：
+官方文档地址：https://projects.pro-bono-publico.de/event-driven-servers/doc/tac_plus.html
+PDF版：https://projects.pro-bono-publico.de/event-driven-servers/doc/mavisd.pdf
+</code></pre>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/11/23/Hexo+Git%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo+Git搭建博客大概流程</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="TACACS+配置" data-title="TACACS+配置" data-url="http://example.com/2024/11/26/TACACS+%E9%85%8D%E7%BD%AE/"  data-images="/img/head.png" data-content="TACACS+配置">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2024 Newbie
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
